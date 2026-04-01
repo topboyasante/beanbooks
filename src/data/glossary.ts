@@ -1,295 +1,504 @@
 export const glossary: Record<string, string> = {
   // Java Platform
-  "JVM": "Java Virtual Machine — the runtime engine that executes Java bytecode on any platform.",
-  "JDK": "Java Development Kit — includes the compiler (javac), JRE, and development tools.",
-  "JRE": "Java Runtime Environment — the JVM plus standard libraries needed to run Java apps.",
-  "bytecode": "Platform-independent intermediate code (.class files) that the JVM interprets or compiles to machine code.",
-  "javac": "The Java compiler — translates .java source files into .class bytecode files.",
-  "classpath": "The path the JVM searches to find classes and packages at runtime.",
-  "JAR": "Java Archive — a packaged bundle of .class files and resources, like a zip for Java apps.",
-  "garbage collection": "Automatic memory management — the JVM reclaims memory from objects no longer in use.",
-  "stack": "Memory region for method calls and local variables. Each thread gets its own stack.",
-  "heap": "Shared memory region where all objects live. Managed by the garbage collector.",
+  JVM: "Java Virtual Machine — the runtime engine that executes Java bytecode on any platform.",
+  JDK: "Java Development Kit — includes the compiler (javac), JRE, and development tools.",
+  JRE: "Java Runtime Environment — the JVM plus standard libraries needed to run Java apps.",
+  bytecode:
+    "Platform-independent intermediate code (.class files) that the JVM interprets or compiles to machine code.",
+  javac:
+    "The Java compiler — translates .java source files into .class bytecode files.",
+  classpath:
+    "The path the JVM searches to find classes and packages at runtime.",
+  JAR: "Java Archive — a packaged bundle of .class files and resources, like a zip for Java apps.",
+  "garbage collection":
+    "Automatic memory management — the JVM reclaims memory from objects no longer in use.",
+  stack:
+    "Memory region for method calls and local variables. Each thread gets its own stack.",
+  heap: "Shared memory region where all objects live. Managed by the garbage collector.",
 
-  "compiled": "Translated from source code to a lower-level form (bytecode or machine code) before execution.",
-  "interpreted": "Executed line by line at runtime, without a separate compilation step.",
-  "IDE": "Integrated Development Environment — a tool combining code editor, compiler, debugger, and project management.",
-  "package": "A namespace that groups related classes together, mapping to a directory structure on disk.",
-  "import": "A statement that makes classes from other packages available in your code.",
-  "Maven": "A build tool that manages dependencies and project lifecycle using pom.xml.",
-  "Gradle": "A modern build tool using Groovy/Kotlin DSL — faster and more flexible than Maven.",
-  "Heap": "Shared memory region where all objects live. Managed by the garbage collector.",
-  "Stack": "Memory region for method calls and local variables. Each thread gets its own stack.",
+  compiled:
+    "Translated from source code to a lower-level form (bytecode or machine code) before execution.",
+  interpreted:
+    "Executed line by line at runtime, without a separate compilation step.",
+  IDE: "Integrated Development Environment — a tool combining code editor, compiler, debugger, and project management.",
+  package:
+    "A namespace that groups related classes together, mapping to a directory structure on disk.",
+  import:
+    "A statement that makes classes from other packages available in your code.",
+  Maven:
+    "A build tool that manages dependencies and project lifecycle using pom.xml.",
+  Gradle:
+    "A modern build tool using Groovy/Kotlin DSL — faster and more flexible than Maven.",
+  Heap: "Shared memory region where all objects live. Managed by the garbage collector.",
+  Stack:
+    "Memory region for method calls and local variables. Each thread gets its own stack.",
 
   // Basics
-  "variable": "A named container that holds a value of a specific type in memory.",
-  "statically typed": "The type of every variable must be declared at compile time — Java catches type errors before your code runs.",
-  "primitive": "A basic data type (int, double, boolean, etc.) stored directly on the stack, not as an object.",
-  "reference type": "A type that stores a pointer to an object on the heap (e.g., String, arrays, classes).",
-  "String": "An immutable sequence of characters. Immutable means once created, it cannot be changed.",
-  "type casting": "Converting a value from one data type to another, either implicitly (widening) or explicitly (narrowing).",
-  "PEMDAS": "Order of operations: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.",
-  "control flow": "Statements that determine which code runs based on conditions (if/else, switch, loops).",
-  "for loop": "A loop with initialization, condition, and update — ideal when you know how many iterations you need.",
-  "while loop": "A loop that continues as long as a condition is true — ideal when the number of iterations is unknown.",
-  "array": "A fixed-size, ordered collection of elements of the same type, accessed by index starting at 0.",
+  variable:
+    "A named container that holds a value of a specific type in memory.",
+  "statically typed":
+    "The type of every variable must be declared at compile time — Java catches type errors before your code runs.",
+  primitive:
+    "A basic data type (int, double, boolean, etc.) stored directly on the stack, not as an object.",
+  "reference type":
+    "A type that stores a pointer to an object on the heap (e.g., String, arrays, classes).",
+  String:
+    "An immutable sequence of characters. Immutable means once created, it cannot be changed.",
+  "type casting":
+    "Converting a value from one data type to another, either implicitly (widening) or explicitly (narrowing).",
+  PEMDAS:
+    "Order of operations: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.",
+  "control flow":
+    "Statements that determine which code runs based on conditions (if/else, switch, loops).",
+  "for loop":
+    "A loop with initialization, condition, and update — ideal when you know how many iterations you need.",
+  "while loop":
+    "A loop that continues as long as a condition is true — ideal when the number of iterations is unknown.",
+  array:
+    "A fixed-size, ordered collection of elements of the same type, accessed by index starting at 0.",
 
   // OOP
-  "class": "A blueprint that defines fields (data) and methods (behavior) for creating objects.",
-  "object": "An instance of a class — a concrete entity in memory with its own field values.",
-  "constructor": "A special method called when creating an object with `new`. Initializes the object's state.",
-  "this": "A reference to the current object instance. Used to distinguish fields from parameters.",
-  "encapsulation": "Hiding internal state behind private fields and exposing controlled access through methods.",
-  "access modifier": "Keywords (private, protected, public) that control who can access a class member.",
-  "immutability": "An object whose state cannot change after creation. Thread-safe and predictable.",
-  "immutable": "Cannot be changed after creation. String in Java is immutable for security and performance.",
-  "inheritance": "A mechanism where a subclass acquires fields and methods from a parent class using `extends`.",
-  "extends": "Keyword to create a subclass that inherits from a parent class.",
-  "super": "A reference to the parent class — used to call parent constructors or overridden methods.",
-  "method overriding": "A subclass providing its own implementation of a method defined in the parent class.",
-  "@Override": "Annotation that tells the compiler you intend to override a parent method — catches typos.",
-  "polymorphism": "The ability to treat objects of different classes through a common interface or parent type.",
-  "abstract class": "A class that cannot be instantiated and may contain abstract methods that subclasses must implement.",
-  "abstract method": "A method with no body — subclasses must provide the implementation.",
-  "interface": "A contract that defines method signatures a class must implement. Supports multiple inheritance.",
-  "functional interface": "An interface with exactly one abstract method — can be used with lambda expressions.",
-  "@FunctionalInterface": "Annotation that ensures an interface has exactly one abstract method, enabling lambda use.",
-  "default method": "A method in an interface with a body (Java 8+). Provides backwards-compatible interface evolution.",
-  "Comparable": "Interface for defining natural ordering of objects — implements compareTo().",
-  "Comparator": "Interface for defining custom ordering — separate from the object's class.",
-  "compile-time polymorphism": "Method overloading — multiple methods with the same name but different parameters, resolved at compile time.",
-  "runtime polymorphism": "Method overriding — the JVM determines which implementation to call based on the actual object type at runtime.",
-  "dynamic method dispatch": "The JVM mechanism for resolving overridden methods at runtime based on the actual object type.",
-  "compact constructors": "A concise constructor syntax in records for validation — no need to assign fields manually.",
-  "pattern matching": "A feature (Java 16+) that combines instanceof check and variable declaration in one step.",
-  "enum": "A special type representing a fixed set of constants, like AccountType.SAVINGS.",
-  "record": "A concise class (Java 16+) for immutable data carriers — auto-generates constructor, getters, equals, hashCode, toString.",
+  class:
+    "A blueprint that defines fields (data) and methods (behavior) for creating objects.",
+  object:
+    "An instance of a class — a concrete entity in memory with its own field values.",
+  constructor:
+    "A special method called when creating an object with `new`. Initializes the object's state.",
+  this: "A reference to the current object instance. Used to distinguish fields from parameters.",
+  encapsulation:
+    "Hiding internal state behind private fields and exposing controlled access through methods.",
+  "access modifier":
+    "Keywords (private, protected, public) that control who can access a class member.",
+  immutability:
+    "An object whose state cannot change after creation. Thread-safe and predictable.",
+  immutable:
+    "Cannot be changed after creation. String in Java is immutable for security and performance.",
+  inheritance:
+    "A mechanism where a subclass acquires fields and methods from a parent class using `extends`.",
+  extends: "Keyword to create a subclass that inherits from a parent class.",
+  super:
+    "A reference to the parent class — used to call parent constructors or overridden methods.",
+  "method overriding":
+    "A subclass providing its own implementation of a method defined in the parent class.",
+  "@Override":
+    "Annotation that tells the compiler you intend to override a parent method — catches typos.",
+  polymorphism:
+    "The ability to treat objects of different classes through a common interface or parent type.",
+  "abstract class":
+    "A class that cannot be instantiated and may contain abstract methods that subclasses must implement.",
+  "abstract method":
+    "A method with no body — subclasses must provide the implementation.",
+  interface:
+    "A contract that defines method signatures a class must implement. Supports multiple inheritance.",
+  "functional interface":
+    "An interface with exactly one abstract method — can be used with lambda expressions.",
+  "@FunctionalInterface":
+    "Annotation that ensures an interface has exactly one abstract method, enabling lambda use.",
+  "default method":
+    "A method in an interface with a body (Java 8+). Provides backwards-compatible interface evolution.",
+  Comparable:
+    "Interface for defining natural ordering of objects — implements compareTo().",
+  Comparator:
+    "Interface for defining custom ordering — separate from the object's class.",
+  "compile-time polymorphism":
+    "Method overloading — multiple methods with the same name but different parameters, resolved at compile time.",
+  "runtime polymorphism":
+    "Method overriding — the JVM determines which implementation to call based on the actual object type at runtime.",
+  "dynamic method dispatch":
+    "The JVM mechanism for resolving overridden methods at runtime based on the actual object type.",
+  "compact constructors":
+    "A concise constructor syntax in records for validation — no need to assign fields manually.",
+  "pattern matching":
+    "A feature (Java 16+) that combines instanceof check and variable declaration in one step.",
+  enum: "A special type representing a fixed set of constants, like AccountType.SAVINGS.",
+  record:
+    "A concise class (Java 16+) for immutable data carriers — auto-generates constructor, getters, equals, hashCode, toString.",
 
   // Advanced Java
-  "Collections Framework": "Java's built-in library of data structures: List, Set, Map, and their implementations.",
-  "ArrayList": "A resizable array implementation of List — fast random access, slow insertions in the middle.",
-  "LinkedList": "A doubly-linked list — fast insertions/deletions, slow random access.",
-  "HashSet": "A Set implementation backed by a hash table — no duplicates, no guaranteed order.",
-  "HashMap": "A Map implementation storing key-value pairs — O(1) average lookup time.",
-  "generics": "Type parameters (like <T>) that let you write classes and methods that work with any type, safely.",
-  "Type erasure": "Generics exist only at compile time — the JVM sees raw types at runtime.",
-  "type erasure": "Generics exist only at compile time — the JVM sees raw types at runtime.",
-  "wildcard": "The ? in generics — represents an unknown type. Used with extends/super for flexibility.",
-  "PECS": "Producer Extends, Consumer Super — guideline for using wildcards in generic methods.",
-  "lambda expression": "A concise way to represent an anonymous function: (params) -> expression.",
-  "lambda": "A concise way to represent an anonymous function: (params) -> expression.",
-  "method reference": "Shorthand for a lambda that calls an existing method: ClassName::methodName.",
-  "Predicate": "Functional interface that takes a value and returns boolean — used for filtering.",
-  "Function": "Functional interface that takes one value and returns another — used for transformations.",
-  "Consumer": "Functional interface that takes a value and returns nothing — used for side effects.",
-  "Supplier": "Functional interface that takes nothing and returns a value — used for lazy computation.",
-  "Stream": "A pipeline for processing sequences of elements with operations like filter, map, and reduce.",
-  "Streams API": "Java 8+ API for declarative collection processing — filter, map, reduce, collect.",
-  "parallel streams": "Streams that split work across multiple threads — use carefully, not always faster.",
-  "checked exception": "An exception the compiler forces you to handle (catch or declare). E.g., IOException.",
-  "unchecked exception": "A RuntimeException the compiler doesn't force you to handle. E.g., NullPointerException.",
-  "try-with-resources": "Auto-closes resources (files, connections) when the try block exits — prevents leaks.",
-  "AutoCloseable": "Interface that enables try-with-resources — requires a close() method.",
-  "NIO": "New I/O — Java's modern file and network API with Path, Files, and non-blocking channels.",
-  "serialization": "Converting an object to bytes for storage or transmission, and back again.",
+  "Collections Framework":
+    "Java's built-in library of data structures: List, Set, Map, and their implementations.",
+  ArrayList:
+    "A resizable array implementation of List — fast random access, slow insertions in the middle.",
+  LinkedList:
+    "A doubly-linked list — fast insertions/deletions, slow random access.",
+  HashSet:
+    "A Set implementation backed by a hash table — no duplicates, no guaranteed order.",
+  HashMap:
+    "A Map implementation storing key-value pairs — O(1) average lookup time.",
+  generics:
+    "Type parameters (like <T>) that let you write classes and methods that work with any type, safely.",
+  "Type erasure":
+    "Generics exist only at compile time — the JVM sees raw types at runtime.",
+  "type erasure":
+    "Generics exist only at compile time — the JVM sees raw types at runtime.",
+  wildcard:
+    "The ? in generics — represents an unknown type. Used with extends/super for flexibility.",
+  PECS: "Producer Extends, Consumer Super — guideline for using wildcards in generic methods.",
+  "lambda expression":
+    "A concise way to represent an anonymous function: (params) -> expression.",
+  lambda:
+    "A concise way to represent an anonymous function: (params) -> expression.",
+  "method reference":
+    "Shorthand for a lambda that calls an existing method: ClassName::methodName.",
+  Predicate:
+    "Functional interface that takes a value and returns boolean — used for filtering.",
+  Function:
+    "Functional interface that takes one value and returns another — used for transformations.",
+  Consumer:
+    "Functional interface that takes a value and returns nothing — used for side effects.",
+  Supplier:
+    "Functional interface that takes nothing and returns a value — used for lazy computation.",
+  Stream:
+    "A pipeline for processing sequences of elements with operations like filter, map, and reduce.",
+  "Streams API":
+    "Java 8+ API for declarative collection processing — filter, map, reduce, collect.",
+  "parallel streams":
+    "Streams that split work across multiple threads — use carefully, not always faster.",
+  "checked exception":
+    "An exception the compiler forces you to handle (catch or declare). E.g., IOException.",
+  "unchecked exception":
+    "A RuntimeException the compiler doesn't force you to handle. E.g., NullPointerException.",
+  "try-with-resources":
+    "Auto-closes resources (files, connections) when the try block exits — prevents leaks.",
+  AutoCloseable:
+    "Interface that enables try-with-resources — requires a close() method.",
+  NIO: "New I/O — Java's modern file and network API with Path, Files, and non-blocking channels.",
+  serialization:
+    "Converting an object to bytes for storage or transmission, and back again.",
 
   // Testing
-  "JUnit": "The standard Java testing framework — write and run unit tests with annotations and assertions.",
-  "JUnit 5": "The latest JUnit version with @Test, @BeforeEach, @ParameterizedTest, and modern assertions.",
+  JUnit:
+    "The standard Java testing framework — write and run unit tests with annotations and assertions.",
+  "JUnit 5":
+    "The latest JUnit version with @Test, @BeforeEach, @ParameterizedTest, and modern assertions.",
   "@Test": "JUnit annotation marking a method as a test case.",
   "@BeforeEach": "JUnit annotation — runs a setup method before each test.",
-  "assertion": "A check that verifies expected behavior — assertEquals, assertTrue, assertThrows.",
-  "parameterized test": "A test that runs multiple times with different inputs — @ParameterizedTest.",
-  "Mockito": "A mocking framework for creating fake objects in tests to isolate the unit under test.",
-  "mock": "A fake object that simulates behavior of a real dependency — controls what methods return.",
+  assertion:
+    "A check that verifies expected behavior — assertEquals, assertTrue, assertThrows.",
+  "parameterized test":
+    "A test that runs multiple times with different inputs — @ParameterizedTest.",
+  Mockito:
+    "A mocking framework for creating fake objects in tests to isolate the unit under test.",
+  mock: "A fake object that simulates behavior of a real dependency — controls what methods return.",
   "@Mock": "Mockito annotation that creates a mock object for a field.",
-  "@InjectMocks": "Mockito annotation that injects mocks into the class under test.",
-  "SOLID": "Five principles of good OOP design: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.",
-  "Single Responsibility": "A class should have only one reason to change — do one thing well.",
-  "Builder pattern": "A design pattern for constructing complex objects step by step with a fluent API.",
-  "Factory pattern": "A design pattern that delegates object creation to a method or class.",
-  "Strategy pattern": "A design pattern that lets you swap algorithms at runtime through a common interface.",
-  "stack trace": "The chain of method calls leading to an error — read from bottom (origin) to top (crash point).",
-  "SLF4J": "Simple Logging Facade for Java — a logging API that works with various backends like Logback.",
-  "NullPointerException": "Runtime error when you try to use a null reference — the most common Java bug.",
+  "@InjectMocks":
+    "Mockito annotation that injects mocks into the class under test.",
+  SOLID:
+    "Five principles of good OOP design: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.",
+  "Single Responsibility":
+    "A class should have only one reason to change — do one thing well.",
+  "Builder pattern":
+    "A design pattern for constructing complex objects step by step with a fluent API.",
+  "Factory pattern":
+    "A design pattern that delegates object creation to a method or class.",
+  "Strategy pattern":
+    "A design pattern that lets you swap algorithms at runtime through a common interface.",
+  "stack trace":
+    "The chain of method calls leading to an error — read from bottom (origin) to top (crash point).",
+  SLF4J:
+    "Simple Logging Facade for Java — a logging API that works with various backends like Logback.",
+  NullPointerException:
+    "Runtime error when you try to use a null reference — the most common Java bug.",
 
   // Spring
-  "dependency injection": "A technique where objects receive their dependencies from outside rather than creating them.",
-  "Inversion of Control": "The framework manages object creation and lifecycle, not your code — the foundation of Spring.",
-  "IoC": "Inversion of Control — the framework manages object creation and lifecycle, not your code.",
-  "ApplicationContext": "Spring's IoC container — creates, configures, and manages all beans in the application.",
-  "bean": "An object managed by the Spring container — created, wired, and destroyed by Spring.",
-  "@Component": "Marks a class as a Spring-managed bean — auto-detected by component scanning.",
-  "@Service": "A @Component specialization for business logic classes — semantic clarity.",
-  "@Repository": "A @Component specialization for data access classes — adds exception translation.",
-  "@Autowired": "Tells Spring to inject a dependency — prefer constructor injection over field injection.",
-  "constructor injection": "Injecting dependencies through the constructor — the recommended approach in Spring.",
-  "bean scope": "How long a bean lives: singleton (one per app, default) or prototype (new instance each time).",
-  "singleton": "Default Spring scope — one shared instance of the bean for the entire application.",
-  "@Configuration": "Marks a class as a source of bean definitions — replaces XML configuration.",
+  "dependency injection":
+    "A technique where objects receive their dependencies from outside rather than creating them.",
+  "Inversion of Control":
+    "The framework manages object creation and lifecycle, not your code — the foundation of Spring.",
+  IoC: "Inversion of Control — the framework manages object creation and lifecycle, not your code.",
+  ApplicationContext:
+    "Spring's IoC container — creates, configures, and manages all beans in the application.",
+  bean: "An object managed by the Spring container — created, wired, and destroyed by Spring.",
+  "@Component":
+    "Marks a class as a Spring-managed bean — auto-detected by component scanning.",
+  "@Service":
+    "A @Component specialization for business logic classes — semantic clarity.",
+  "@Repository":
+    "A @Component specialization for data access classes — adds exception translation.",
+  "@Autowired":
+    "Tells Spring to inject a dependency — prefer constructor injection over field injection.",
+  "constructor injection":
+    "Injecting dependencies through the constructor — the recommended approach in Spring.",
+  "bean scope":
+    "How long a bean lives: singleton (one per app, default) or prototype (new instance each time).",
+  singleton:
+    "Default Spring scope — one shared instance of the bean for the entire application.",
+  "@Configuration":
+    "Marks a class as a source of bean definitions — replaces XML configuration.",
   "@Bean": "Declares a method's return value as a Spring-managed bean.",
-  "@Value": "Injects values from properties files into fields — @Value(\"${property.name}\").",
-  "Spring profile": "A way to activate different configurations for different environments (dev, test, prod).",
-  "@Profile": "Activates a bean only when the specified Spring profile is active.",
-  "@ConfigurationProperties": "Type-safe binding of properties to a Java object — better than @Value for groups.",
-  "@RestController": "Combines @Controller and @ResponseBody — every method returns data, not a view.",
-  "@RequestMapping": "Maps HTTP requests to handler methods — base path for a controller.",
-  "@GetMapping": "Shortcut for @RequestMapping(method = GET) — handles HTTP GET requests.",
-  "@PostMapping": "Shortcut for @RequestMapping(method = POST) — handles HTTP POST requests.",
-  "@PathVariable": "Extracts a value from the URL path — @GetMapping(\"/users/{id}\").",
+  "@Value":
+    'Injects values from properties files into fields — @Value("${property.name}").',
+  "Spring profile":
+    "A way to activate different configurations for different environments (dev, test, prod).",
+  "@Profile":
+    "Activates a bean only when the specified Spring profile is active.",
+  "@ConfigurationProperties":
+    "Type-safe binding of properties to a Java object — better than @Value for groups.",
+  "@RestController":
+    "Combines @Controller and @ResponseBody — every method returns data, not a view.",
+  "@RequestMapping":
+    "Maps HTTP requests to handler methods — base path for a controller.",
+  "@GetMapping":
+    "Shortcut for @RequestMapping(method = GET) — handles HTTP GET requests.",
+  "@PostMapping":
+    "Shortcut for @RequestMapping(method = POST) — handles HTTP POST requests.",
+  "@PathVariable":
+    'Extracts a value from the URL path — @GetMapping("/users/{id}").',
   "@RequestParam": "Extracts a query parameter from the URL — ?name=value.",
-  "@RequestBody": "Deserializes the HTTP request body (usually JSON) into a Java object.",
-  "ResponseEntity": "A wrapper for HTTP responses — lets you set status codes, headers, and body.",
-  "DispatcherServlet": "Spring MVC's front controller — routes all HTTP requests to the appropriate handler.",
-  "@ExceptionHandler": "Handles exceptions thrown by controller methods — returns error responses.",
-  "JPA": "Java Persistence API — the standard for object-relational mapping in Java.",
-  "ORM": "Object-Relational Mapping — maps Java objects to database tables automatically.",
+  "@RequestBody":
+    "Deserializes the HTTP request body (usually JSON) into a Java object.",
+  ResponseEntity:
+    "A wrapper for HTTP responses — lets you set status codes, headers, and body.",
+  DispatcherServlet:
+    "Spring MVC's front controller — routes all HTTP requests to the appropriate handler.",
+  "@ExceptionHandler":
+    "Handles exceptions thrown by controller methods — returns error responses.",
+  JPA: "Java Persistence API — the standard for object-relational mapping in Java.",
+  ORM: "Object-Relational Mapping — maps Java objects to database tables automatically.",
   "@Entity": "Marks a class as a JPA entity — mapped to a database table.",
-  "@Table": "Specifies the database table name for an entity — optional if name matches class.",
+  "@Table":
+    "Specifies the database table name for an entity — optional if name matches class.",
   "@Id": "Marks a field as the primary key of an entity.",
-  "@GeneratedValue": "Tells JPA to auto-generate the primary key value (auto-increment).",
-  "JpaRepository": "Spring Data interface providing CRUD operations — no implementation needed.",
-  "JPQL": "Java Persistence Query Language — SQL-like queries using entity names instead of table names.",
-  "@Transactional": "Wraps a method in a database transaction — auto-commits on success, rolls back on exception.",
+  "@GeneratedValue":
+    "Tells JPA to auto-generate the primary key value (auto-increment).",
+  JpaRepository:
+    "Spring Data interface providing CRUD operations — no implementation needed.",
+  JPQL: "Java Persistence Query Language — SQL-like queries using entity names instead of table names.",
+  "@Transactional":
+    "Wraps a method in a database transaction — auto-commits on success, rolls back on exception.",
   "@Query": "Defines a custom JPQL or native SQL query on a repository method.",
-  "Spring Security": "Spring's security framework — handles authentication, authorization, and protection.",
-  "SecurityFilterChain": "Configures HTTP security rules — which endpoints require authentication.",
-  "BCrypt": "A password hashing algorithm — Spring Security's recommended encoder.",
-  "CORS": "Cross-Origin Resource Sharing — controls which domains can call your API.",
+  "Spring Security":
+    "Spring's security framework — handles authentication, authorization, and protection.",
+  SecurityFilterChain:
+    "Configures HTTP security rules — which endpoints require authentication.",
+  BCrypt:
+    "A password hashing algorithm — Spring Security's recommended encoder.",
+  CORS: "Cross-Origin Resource Sharing — controls which domains can call your API.",
 
   // Spring Boot
-  "Spring Boot": "An opinionated framework built on Spring — auto-configures everything so you can start fast.",
-  "auto-configuration": "Spring Boot automatically configures beans based on your classpath and properties.",
-  "starter": "Pre-packaged dependency bundles — spring-boot-starter-web includes everything for REST APIs.",
-  "@SpringBootApplication": "Combines @Configuration, @EnableAutoConfiguration, and @ComponentScan — the main entry point.",
-  "application.yml": "Spring Boot's configuration file — hierarchical format for setting properties.",
-  "DevTools": "Spring Boot module for hot reload during development — restarts on code changes.",
-  "Spring Initializr": "Web tool (start.spring.io) for generating Spring Boot project scaffolds.",
-  "DTO": "Data Transfer Object — a simple object for transferring data between layers, separate from entities.",
-  "@Valid": "Triggers validation on a request body — works with @NotNull, @Size, @Min, etc.",
-  "@ControllerAdvice": "Global exception handler — catches exceptions across all controllers.",
-  "Pageable": "Spring Data interface for pagination — page number, size, sort order.",
-  "HikariCP": "The default connection pool in Spring Boot — fast, lightweight, production-ready.",
-  "connection pool": "A cache of database connections reused across requests — avoids creating new connections each time.",
-  "Flyway": "A database migration tool — version-controls your schema changes with SQL scripts.",
-  "H2": "An embedded in-memory database — perfect for development and testing.",
+  "Spring Boot":
+    "An opinionated framework built on Spring — auto-configures everything so you can start fast.",
+  "auto-configuration":
+    "Spring Boot automatically configures beans based on your classpath and properties.",
+  starter:
+    "Pre-packaged dependency bundles — spring-boot-starter-web includes everything for REST APIs.",
+  "@SpringBootApplication":
+    "Combines @Configuration, @EnableAutoConfiguration, and @ComponentScan — the main entry point.",
+  "application.yml":
+    "Spring Boot's configuration file — hierarchical format for setting properties.",
+  DevTools:
+    "Spring Boot module for hot reload during development — restarts on code changes.",
+  "Spring Initializr":
+    "Web tool (start.spring.io) for generating Spring Boot project scaffolds.",
+  DTO: "Data Transfer Object — a simple object for transferring data between layers, separate from entities.",
+  "@Valid":
+    "Triggers validation on a request body — works with @NotNull, @Size, @Min, etc.",
+  "@ControllerAdvice":
+    "Global exception handler — catches exceptions across all controllers.",
+  Pageable:
+    "Spring Data interface for pagination — page number, size, sort order.",
+  HikariCP:
+    "The default connection pool in Spring Boot — fast, lightweight, production-ready.",
+  Flyway:
+    "A database migration tool — version-controls your schema changes with SQL scripts.",
+  H2: "An embedded in-memory database — perfect for development and testing.",
   "@SpringBootTest": "Loads the full Spring context for integration tests.",
-  "@WebMvcTest": "Tests only the controller layer — fast, doesn't load the full context.",
-  "MockMvc": "Testing utility for simulating HTTP requests to controllers without starting a server.",
+  "@WebMvcTest":
+    "Tests only the controller layer — fast, doesn't load the full context.",
+  MockMvc:
+    "Testing utility for simulating HTTP requests to controllers without starting a server.",
   "@MockBean": "Replaces a Spring bean with a Mockito mock in tests.",
-  "@DataJpaTest": "Tests only the JPA layer — configures an embedded database and repositories.",
-  "Testcontainers": "Library that spins up real Docker containers (databases, etc.) for integration tests.",
-  "Actuator": "Spring Boot module exposing health, metrics, and info endpoints for monitoring.",
-  "Micrometer": "Metrics collection library — exports to Prometheus, Grafana, DataDog, etc.",
-  "Docker": "Containerization platform — packages your app with its dependencies into a portable image.",
-  "Dockerfile": "A script that defines how to build a Docker image for your application.",
-  "multi-stage build": "A Dockerfile pattern that builds in one stage and copies only the artifact to a smaller runtime image.",
-  "effectively final": "A variable that is never reassigned after initialization — required for use inside lambdas.",
-  "lazy": "Evaluated only when needed, not upfront. Streams are lazy — operations run only when a terminal operation is called.",
-  "List": "An ordered collection that allows duplicates. Common implementations: ArrayList, LinkedList.",
-  "Set": "A collection that does not allow duplicates. Common implementations: HashSet, TreeSet.",
-  "Map": "A collection of key-value pairs. Common implementations: HashMap, TreeMap.",
+  "@DataJpaTest":
+    "Tests only the JPA layer — configures an embedded database and repositories.",
+  Testcontainers:
+    "Library that spins up real Docker containers (databases, etc.) for integration tests.",
+  Actuator:
+    "Spring Boot module exposing health, metrics, and info endpoints for monitoring.",
+  Micrometer:
+    "Metrics collection library — exports to Prometheus, Grafana, DataDog, etc.",
+  Docker:
+    "Containerization platform — packages your app with its dependencies into a portable image.",
+  Dockerfile:
+    "A script that defines how to build a Docker image for your application.",
+  "multi-stage build":
+    "A Dockerfile pattern that builds in one stage and copies only the artifact to a smaller runtime image.",
+  "effectively final":
+    "A variable that is never reassigned after initialization — required for use inside lambdas.",
+  lazy: "Evaluated only when needed, not upfront. Streams are lazy — operations run only when a terminal operation is called.",
+  List: "An ordered collection that allows duplicates. Common implementations: ArrayList, LinkedList.",
+  Set: "A collection that does not allow duplicates. Common implementations: HashSet, TreeSet.",
+  Map: "A collection of key-value pairs. Common implementations: HashMap, TreeMap.",
 
   // SQL & Database Patterns
-  "SQL": "Structured Query Language — the standard language for querying and manipulating relational databases.",
-  "JOIN": "Combines rows from two or more tables based on a related column between them.",
+  SQL: "Structured Query Language — the standard language for querying and manipulating relational databases.",
+  JOIN: "Combines rows from two or more tables based on a related column between them.",
   "INNER JOIN": "Returns only rows where there is a match in both tables.",
-  "LEFT JOIN": "Returns all rows from the left table, plus matched rows from the right (null if no match).",
-  "GROUP BY": "Groups rows sharing a value, used with aggregate functions like SUM, COUNT, AVG.",
-  "index": "A data structure (usually B-tree) that speeds up lookups on a column, at the cost of slower writes.",
-  "EXPLAIN": "Shows the query execution plan — how the database will retrieve your data, revealing slow scans.",
-  "ACID": "Atomicity, Consistency, Isolation, Durability — the four guarantees of reliable database transactions.",
-  "Atomicity": "All operations in a transaction succeed or all are rolled back — no partial updates.",
-  "isolation level": "Controls how concurrent transactions see each other's changes. Higher isolation = more safety, less throughput.",
-  "optimistic locking": "Assumes conflicts are rare. Uses a version column — fails on update if another transaction modified the row.",
-  "pessimistic locking": "Assumes conflicts are likely. Locks the row with SELECT FOR UPDATE — blocks other transactions.",
-  "connection pool": "A cache of database connections reused across requests — avoids creating new connections each time.",
+  "LEFT JOIN":
+    "Returns all rows from the left table, plus matched rows from the right (null if no match).",
+  "GROUP BY":
+    "Groups rows sharing a value, used with aggregate functions like SUM, COUNT, AVG.",
+  index:
+    "A data structure (usually B-tree) that speeds up lookups on a column, at the cost of slower writes.",
+  EXPLAIN:
+    "Shows the query execution plan — how the database will retrieve your data, revealing slow scans.",
+  ACID: "Atomicity, Consistency, Isolation, Durability — the four guarantees of reliable database transactions.",
+  Atomicity:
+    "All operations in a transaction succeed or all are rolled back — no partial updates.",
+  "isolation level":
+    "Controls how concurrent transactions see each other's changes. Higher isolation = more safety, less throughput.",
+  "optimistic locking":
+    "Assumes conflicts are rare. Uses a version column — fails on update if another transaction modified the row.",
+  "pessimistic locking":
+    "Assumes conflicts are likely. Locks the row with SELECT FOR UPDATE — blocks other transactions.",
+  "connection pool":
+    "A cache of database connections reused across requests — avoids creating new connections each time.",
 
   // Concurrency
-  "thread": "A lightweight unit of execution. Multiple threads can run concurrently within a process.",
-  "race condition": "A bug where the result depends on the timing of thread execution — two threads modifying shared state.",
-  "synchronized": "Java keyword that ensures only one thread can execute a block of code at a time.",
-  "ExecutorService": "A thread pool manager — submit tasks without manually creating threads.",
-  "CompletableFuture": "Java's promise-like API for composing async operations — thenApply, thenCombine, exceptionally.",
-  "AtomicLong": "A thread-safe long value — supports lock-free atomic operations like incrementAndGet.",
-  "ConcurrentHashMap": "A thread-safe HashMap that allows concurrent reads and writes without locking the entire map.",
-  "volatile": "Ensures a variable's value is always read from main memory, not a thread-local cache.",
-  "ThreadLocal": "Gives each thread its own independent copy of a variable — no sharing, no synchronization needed.",
+  thread:
+    "A lightweight unit of execution. Multiple threads can run concurrently within a process.",
+  "race condition":
+    "A bug where the result depends on the timing of thread execution — two threads modifying shared state.",
+  synchronized:
+    "Java keyword that ensures only one thread can execute a block of code at a time.",
+  ExecutorService:
+    "A thread pool manager — submit tasks without manually creating threads.",
+  CompletableFuture:
+    "Java's promise-like API for composing async operations — thenApply, thenCombine, exceptionally.",
+  AtomicLong:
+    "A thread-safe long value — supports lock-free atomic operations like incrementAndGet.",
+  ConcurrentHashMap:
+    "A thread-safe HashMap that allows concurrent reads and writes without locking the entire map.",
+  volatile:
+    "Ensures a variable's value is always read from main memory, not a thread-local cache.",
+  ThreadLocal:
+    "Gives each thread its own independent copy of a variable — no sharing, no synchronization needed.",
 
   // Caching
-  "cache": "A fast storage layer (usually in-memory) that stores frequently accessed data to avoid slow lookups.",
-  "cache-aside": "Check cache first; on miss, load from database and store in cache. Most common caching pattern.",
-  "write-through": "Write to cache and database simultaneously — strong consistency, slower writes.",
-  "write-behind": "Write to cache first, async write to database later — fast writes, risk of data loss.",
-  "TTL": "Time To Live — how long a cached value is valid before it expires and must be refreshed.",
-  "cache invalidation": "Removing or updating stale cache entries when the underlying data changes.",
-  "Redis": "An in-memory data store used for caching, pub/sub, rate limiting, and session storage.",
-  "@Cacheable": "Spring annotation that caches a method's return value — subsequent calls with the same args return cached result.",
-  "@CacheEvict": "Spring annotation that removes entries from the cache when data changes.",
+  cache:
+    "A fast storage layer (usually in-memory) that stores frequently accessed data to avoid slow lookups.",
+  "cache-aside":
+    "Check cache first; on miss, load from database and store in cache. Most common caching pattern.",
+  "write-through":
+    "Write to cache and database simultaneously — strong consistency, slower writes.",
+  "write-behind":
+    "Write to cache first, async write to database later — fast writes, risk of data loss.",
+  TTL: "Time To Live — how long a cached value is valid before it expires and must be refreshed.",
+  "cache invalidation":
+    "Removing or updating stale cache entries when the underlying data changes.",
+  Redis:
+    "An in-memory data store used for caching, pub/sub, rate limiting, and session storage.",
+  "@Cacheable":
+    "Spring annotation that caches a method's return value — subsequent calls with the same args return cached result.",
+  "@CacheEvict":
+    "Spring annotation that removes entries from the cache when data changes.",
 
   // Messaging
-  "message queue": "A system that stores messages between producers and consumers, enabling async processing.",
-  "pub/sub": "Publish/Subscribe — producers send events to a topic, all subscribers receive a copy.",
-  "Kafka": "A distributed event streaming platform — durable, ordered, replayable. Popular in banking for event processing.",
-  "RabbitMQ": "A traditional message broker supporting complex routing, acknowledgments, and dead letter queues.",
-  "dead letter queue": "A queue where messages go when they can't be processed — prevents poison messages from blocking the system.",
-  "consumer group": "A set of consumers that share the load of processing messages from a topic — each message goes to one consumer.",
-  "idempotency": "The property that performing an operation multiple times produces the same result — critical for payment retries.",
-  "idempotency key": "A unique client-generated ID sent with a request to prevent duplicate processing on retries.",
+  "message queue":
+    "A system that stores messages between producers and consumers, enabling async processing.",
+  "pub/sub":
+    "Publish/Subscribe — producers send events to a topic, all subscribers receive a copy.",
+  Kafka:
+    "A distributed event streaming platform — durable, ordered, replayable. Popular in banking for event processing.",
+  RabbitMQ:
+    "A traditional message broker supporting complex routing, acknowledgments, and dead letter queues.",
+  "dead letter queue":
+    "A queue where messages go when they can't be processed — prevents poison messages from blocking the system.",
+  "consumer group":
+    "A set of consumers that share the load of processing messages from a topic — each message goes to one consumer.",
+  idempotency:
+    "The property that performing an operation multiple times produces the same result — critical for payment retries.",
+  "idempotency key":
+    "A unique client-generated ID sent with a request to prevent duplicate processing on retries.",
 
   // Event-Driven Architecture
-  "event sourcing": "Storing every state change as an immutable event, and computing current state by replaying all events.",
-  "CQRS": "Command Query Responsibility Segregation — separate models for writing (commands) and reading (queries).",
-  "eventual consistency": "A model where data will become consistent across the system, but not instantly — acceptable for many use cases.",
-  "saga pattern": "Coordinates multi-step distributed transactions with compensating actions if a step fails.",
-  "domain event": "An event representing something that happened in the business domain — 'TransferCompleted', 'AccountOpened'.",
+  "event sourcing":
+    "Storing every state change as an immutable event, and computing current state by replaying all events.",
+  CQRS: "Command Query Responsibility Segregation — separate models for writing (commands) and reading (queries).",
+  "eventual consistency":
+    "A model where data will become consistent across the system, but not instantly — acceptable for many use cases.",
+  "saga pattern":
+    "Coordinates multi-step distributed transactions with compensating actions if a step fails.",
+  "domain event":
+    "An event representing something that happened in the business domain — 'TransferCompleted', 'AccountOpened'.",
 
   // Rate Limiting
-  "rate limiting": "Restricting how many requests a client can make in a time window — prevents abuse and overload.",
-  "token bucket": "Rate limiting algorithm where tokens regenerate at a fixed rate; each request costs a token. Allows controlled bursts.",
-  "sliding window": "Rate limiting algorithm that counts requests in a rolling time window — more accurate than fixed windows.",
-  "throttling": "Slowing down requests (queuing) instead of rejecting them outright.",
-  "HTTP 429": "Too Many Requests — the standard HTTP status code returned when a client exceeds the rate limit.",
+  "rate limiting":
+    "Restricting how many requests a client can make in a time window — prevents abuse and overload.",
+  "token bucket":
+    "Rate limiting algorithm where tokens regenerate at a fixed rate; each request costs a token. Allows controlled bursts.",
+  "sliding window":
+    "Rate limiting algorithm that counts requests in a rolling time window — more accurate than fixed windows.",
+  throttling:
+    "Slowing down requests (queuing) instead of rejecting them outright.",
+  "HTTP 429":
+    "Too Many Requests — the standard HTTP status code returned when a client exceeds the rate limit.",
 
   // API Design
-  "REST": "Representational State Transfer — an architectural style for APIs using HTTP methods on resources.",
-  "API versioning": "Maintaining multiple API versions so clients can upgrade at their own pace.",
-  "pagination": "Splitting large result sets into pages — offset-based (page/size) or cursor-based (after=lastId).",
-  "cursor-based pagination": "Using a pointer to the last item instead of an offset — more efficient for large datasets.",
+  REST: "Representational State Transfer — an architectural style for APIs using HTTP methods on resources.",
+  "API versioning":
+    "Maintaining multiple API versions so clients can upgrade at their own pace.",
+  pagination:
+    "Splitting large result sets into pages — offset-based (page/size) or cursor-based (after=lastId).",
+  "cursor-based pagination":
+    "Using a pointer to the last item instead of an offset — more efficient for large datasets.",
 
   // Resilience
-  "circuit breaker": "A pattern that stops calling a failing service after repeated failures, allowing it time to recover.",
-  "exponential backoff": "Increasing the wait time between retries exponentially (1s, 2s, 4s, 8s) to avoid overwhelming a recovering service.",
-  "bulkhead": "Isolating components (e.g., separate thread pools) so one failure doesn't cascade to the entire system.",
-  "distributed tracing": "Tracking a request across multiple services using trace IDs — see the full journey of a transaction.",
-  "correlation ID": "A unique ID attached to a request that follows it through all services and log entries.",
-  "health check": "An endpoint that reports whether a service is running and its dependencies are healthy.",
-  "liveness probe": "Checks if the app is running at all — restart if unhealthy.",
-  "readiness probe": "Checks if the app is ready to accept traffic — stop routing requests if unready.",
+  "circuit breaker":
+    "A pattern that stops calling a failing service after repeated failures, allowing it time to recover.",
+  "exponential backoff":
+    "Increasing the wait time between retries exponentially (1s, 2s, 4s, 8s) to avoid overwhelming a recovering service.",
+  bulkhead:
+    "Isolating components (e.g., separate thread pools) so one failure doesn't cascade to the entire system.",
+  "distributed tracing":
+    "Tracking a request across multiple services using trace IDs — see the full journey of a transaction.",
+  "correlation ID":
+    "A unique ID attached to a request that follows it through all services and log entries.",
+  "health check":
+    "An endpoint that reports whether a service is running and its dependencies are healthy.",
+  "liveness probe":
+    "Checks if the app is running at all — restart if unhealthy.",
+  "readiness probe":
+    "Checks if the app is ready to accept traffic — stop routing requests if unready.",
 
   // New Spring/Boot terms
-  "@EnableAutoConfiguration": "Tells Spring Boot to automatically configure beans based on classpath dependencies.",
-  "@ComponentScan": "Tells Spring to scan the current package and subpackages for @Component-annotated classes.",
-  "@ConditionalOnClass": "Spring Boot auto-config annotation — creates a bean only if a class is on the classpath.",
-  "layered architecture": "Separating an app into Controller (HTTP), Service (business logic), and Repository (data) layers.",
-  "DTO": "Data Transfer Object — a simple object for transferring data between layers, separate from entities.",
-  "MapStruct": "A code generator that creates type-safe DTO-to-entity mapping code at compile time.",
-  "@OneToMany": "JPA annotation mapping a one-to-many relationship — one Account has many Transactions.",
-  "@ManyToOne": "JPA annotation mapping a many-to-one relationship — many Transactions belong to one Account.",
-  "@ManyToMany": "JPA annotation mapping a many-to-many relationship — uses a join table.",
-  "FetchType.LAZY": "Load related entities only when accessed — default for collections, prevents unnecessary queries.",
-  "FetchType.EAGER": "Load related entities immediately with the parent — can cause performance issues.",
-  "N+1 problem": "A performance bug where fetching N entities triggers N additional queries for related data.",
-  "@EntityGraph": "JPA annotation to specify which relationships to fetch eagerly for a specific query — solves N+1.",
-  "cascade": "Propagating operations (save, delete) from parent to child entities automatically.",
-  "Bean Validation": "Java standard for declarating validation rules with annotations like @NotNull, @Size, @Min.",
+  "@EnableAutoConfiguration":
+    "Tells Spring Boot to automatically configure beans based on classpath dependencies.",
+  "@ComponentScan":
+    "Tells Spring to scan the current package and subpackages for @Component-annotated classes.",
+  "@ConditionalOnClass":
+    "Spring Boot auto-config annotation — creates a bean only if a class is on the classpath.",
+  "layered architecture":
+    "Separating an app into Controller (HTTP), Service (business logic), and Repository (data) layers.",
+  MapStruct:
+    "A code generator that creates type-safe DTO-to-entity mapping code at compile time.",
+  "@OneToMany":
+    "JPA annotation mapping a one-to-many relationship — one Account has many Transactions.",
+  "@ManyToOne":
+    "JPA annotation mapping a many-to-one relationship — many Transactions belong to one Account.",
+  "@ManyToMany":
+    "JPA annotation mapping a many-to-many relationship — uses a join table.",
+  "FetchType.LAZY":
+    "Load related entities only when accessed — default for collections, prevents unnecessary queries.",
+  "FetchType.EAGER":
+    "Load related entities immediately with the parent — can cause performance issues.",
+  "N+1 problem":
+    "A performance bug where fetching N entities triggers N additional queries for related data.",
+  "@EntityGraph":
+    "JPA annotation to specify which relationships to fetch eagerly for a specific query — solves N+1.",
+  cascade:
+    "Propagating operations (save, delete) from parent to child entities automatically.",
+  "Bean Validation":
+    "Java standard for declarating validation rules with annotations like @NotNull, @Size, @Min.",
   "@NotNull": "Validation annotation — the field must not be null.",
-  "@NotBlank": "Validation annotation — the string must not be null, empty, or whitespace only.",
-  "JWT": "JSON Web Token — a signed token containing user identity/claims, used for stateless authentication.",
-  "refresh token": "A long-lived token used to obtain new access tokens without re-authenticating.",
-  "MDC": "Mapped Diagnostic Context — thread-local storage for adding context (requestId, userId) to every log line.",
-  "Logback": "The default logging implementation in Spring Boot — configured via logback-spring.xml or application.yml.",
-  "ELK": "Elasticsearch, Logstash, Kibana — a popular stack for centralized log aggregation and search.",
+  "@NotBlank":
+    "Validation annotation — the string must not be null, empty, or whitespace only.",
+  JWT: "JSON Web Token — a signed token containing user identity/claims, used for stateless authentication.",
+  "refresh token":
+    "A long-lived token used to obtain new access tokens without re-authenticating.",
+  MDC: "Mapped Diagnostic Context — thread-local storage for adding context (requestId, userId) to every log line.",
+  Logback:
+    "The default logging implementation in Spring Boot — configured via logback-spring.xml or application.yml.",
+  ELK: "Elasticsearch, Logstash, Kibana — a popular stack for centralized log aggregation and search.",
 }
 
 // Build a case-insensitive lookup index

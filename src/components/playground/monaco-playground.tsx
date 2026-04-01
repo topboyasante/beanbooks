@@ -14,7 +14,10 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { simulateJava } from "@/lib/java-simulator"
-import { buildOnlineCompilerUrl, canSimulateLocally } from "@/lib/external-compiler"
+import {
+  buildOnlineCompilerUrl,
+  canSimulateLocally,
+} from "@/lib/external-compiler"
 import type { Challenge } from "@/types/learning"
 
 interface MonacoPlaygroundProps {
@@ -43,7 +46,6 @@ export function MonacoPlayground({
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [showHint, setShowHint] = useState(false)
-  const [showSolution, setShowSolution] = useState(false)
 
   const handleEditorChange = useCallback(
     (value: string | undefined) => {
@@ -51,7 +53,7 @@ export function MonacoPlayground({
       setCode(newCode)
       onCodeChange(newCode)
     },
-    [onCodeChange],
+    [onCodeChange]
   )
 
   function handleRun() {
@@ -68,11 +70,9 @@ export function MonacoPlayground({
     setIsCorrect(null)
     setFeedback(null)
     setShowHint(false)
-    setShowSolution(false)
   }
 
   function handleShowSolution() {
-    setShowSolution(true)
     setCode(challenge.solution)
     onCodeChange(challenge.solution)
   }
@@ -139,7 +139,9 @@ export function MonacoPlayground({
             <Button
               size="sm"
               className="h-7 gap-1.5 bg-violet-600 text-xs text-white hover:bg-violet-700"
-              onClick={() => window.open(buildOnlineCompilerUrl(code), "_blank")}
+              onClick={() =>
+                window.open(buildOnlineCompilerUrl(code), "_blank")
+              }
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Run Online
@@ -153,7 +155,7 @@ export function MonacoPlayground({
         {/* Left: Instructions + Hint */}
         <div className="flex w-80 shrink-0 flex-col border-r border-white/10">
           <div className="flex-1 overflow-y-auto p-5">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-400">
+            <h3 className="mb-3 text-sm font-semibold tracking-wide text-gray-400 uppercase">
               Challenge
             </h3>
             <p className="text-sm leading-relaxed text-gray-300">
@@ -172,7 +174,7 @@ export function MonacoPlayground({
 
             {challenge.expectedOutput && (
               <div className="mt-5">
-                <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <h4 className="mb-2 text-xs font-semibold tracking-wide text-gray-500 uppercase">
                   Expected Output
                 </h4>
                 <pre className="rounded-lg bg-white/5 p-3 font-mono text-xs leading-5 text-gray-400">
@@ -249,7 +251,7 @@ export function MonacoPlayground({
                   <p
                     className={cn(
                       "mt-2 text-sm font-medium",
-                      isCorrect ? "text-green-400" : "text-red-400",
+                      isCorrect ? "text-green-400" : "text-red-400"
                     )}
                   >
                     {feedback}
