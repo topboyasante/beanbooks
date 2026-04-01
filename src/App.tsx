@@ -1,21 +1,39 @@
-import { Button } from "@/components/ui/button"
+import { useEffect } from "react"
+import { BrowserRouter, Routes, Route, useLocation } from "react-router"
+import { getHighlighter } from "@/lib/highlighter"
+import { ProgressProvider } from "@/lib/progress"
 
-export function App() {
-  return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
-  )
+// Preload shiki so it's ready before any lesson renders
+getHighlighter()
+import { SidebarLayout } from "@/pages/layout"
+import { DashboardPage } from "@/pages/dashboard"
+import { LessonPage } from "@/pages/lesson"
+import { ChallengePage } from "@/pages/challenge"
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
 }
 
-export default App
+export default function App() {
+  return (
+    <ProgressProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          {/* Challenge gets its own full-screen layout (no sidebar) */}
+          <Route path="/lesson/:lessonId/challenge" element={<ChallengePage />} />
+
+          {/* Everything else uses sidebar layout */}
+          <Route element={<SidebarLayout />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="/lesson/:lessonId" element={<LessonPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ProgressProvider>
+  )
+}
