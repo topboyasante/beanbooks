@@ -67,6 +67,7 @@ import edaRaw from "./lessons/backend-patterns/event-driven-architecture.md?raw"
 import rateLimitingRaw from "./lessons/backend-patterns/rate-limiting.md?raw"
 import apiDesignRaw from "./lessons/backend-patterns/api-design.md?raw"
 import resilienceRaw from "./lessons/backend-patterns/resilience-observability.md?raw"
+import apiSecurityRaw from "./lessons/backend-patterns/api-security.md?raw"
 
 // Module 9: Capstone
 import capProjectSetupRaw from "./lessons/capstone/project-setup.md?raw"
@@ -204,6 +205,7 @@ export const modules: Module[] = [
       parseLesson(rateLimitingRaw),
       parseLesson(apiDesignRaw),
       parseLesson(resilienceRaw),
+      parseLesson(apiSecurityRaw),
     ],
   },
   {
