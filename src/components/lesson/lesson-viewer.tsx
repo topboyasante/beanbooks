@@ -1,7 +1,7 @@
-import { useMemo, useEffect, useState, useRef } from "react"
+import { useMemo, useEffect, useState, useRef, useCallback } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { Landmark, Lightbulb, List, Code2 } from "lucide-react"
+import { Landmark, Lightbulb, List, Code2, Copy, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { MermaidDiagram } from "./mermaid-diagram"
@@ -95,23 +95,83 @@ function useActiveHeading(ids: string[]) {
   return activeId
 }
 
+function buildLessonMarkdown(lesson: Lesson): string {
+  const parts: string[] = []
+
+  parts.push(`# ${lesson.title}`)
+  parts.push("")
+  parts.push(lesson.description)
+  parts.push("")
+
+  if (lesson.bankingScenario) {
+    parts.push("## Banking Scenario")
+    parts.push("")
+    parts.push(lesson.bankingScenario.trim())
+    parts.push("")
+  }
+
+  if (lesson.content) {
+    parts.push(lesson.content.trim())
+    parts.push("")
+  }
+
+  if (lesson.whyItMatters) {
+    parts.push("## Why It Matters")
+    parts.push("")
+    parts.push(lesson.whyItMatters.trim())
+    parts.push("")
+  }
+
+  return parts.join("\n")
+}
+
 export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
   const toc = useMemo(() => extractToc(lesson.content), [lesson.content])
   const tocIds = useMemo(() => toc.map((e) => e.id), [toc])
   const activeId = useActiveHeading(tocIds)
+
+  const [copied, setCopied] = useState(false)
+
+  const copyAsMarkdown = useCallback(() => {
+    const md = buildLessonMarkdown(lesson)
+    navigator.clipboard.writeText(md).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }, [lesson])
 
   return (
     <div className="flex gap-6 lg:gap-10">
       {/* Main content */}
       <div className="min-w-0 flex-1 space-y-6 sm:space-y-8">
         {/* Header */}
-        <div>
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground">
-            {lesson.title}
-          </h1>
-          <p className="text-base text-muted-foreground">
-            {lesson.description}
-          </p>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground">
+              {lesson.title}
+            </h1>
+            <p className="text-base text-muted-foreground">
+              {lesson.description}
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={copyAsMarkdown}
+            className="shrink-0 gap-1.5"
+          >
+            {copied ? (
+              <>
+                <Check className="h-3.5 w-3.5" />
+                Copied
+              </>
+            ) : (
+              <>
+                <Copy className="h-3.5 w-3.5" />
+                Copy as Markdown
+              </>
+            )}
+          </Button>
         </div>
 
         {/* Banking Scenario */}
