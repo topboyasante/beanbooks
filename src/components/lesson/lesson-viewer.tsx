@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from "react"
+import { useMemo, useEffect, useState, useRef } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { Landmark, Lightbulb, List, Code2 } from "lucide-react"
@@ -49,6 +49,12 @@ interface LessonViewerProps {
 
 function useActiveHeading(ids: string[]) {
   const [activeId, setActiveId] = useState<string | null>(ids[0] ?? null)
+  const idsRef = useRef(ids)
+  idsRef.current = ids
+
+  useEffect(() => {
+    setActiveId(ids[0] ?? null)
+  }, [ids])
 
   useEffect(() => {
     let raf = 0
@@ -56,8 +62,9 @@ function useActiveHeading(ids: string[]) {
     function compute() {
       const offset = 100
       let current: string | null = null
+      const currentIds = idsRef.current
 
-      for (const id of ids) {
+      for (const id of currentIds) {
         const el = document.getElementById(id)
         if (!el) continue
         if (el.getBoundingClientRect().top <= offset) {
@@ -67,7 +74,7 @@ function useActiveHeading(ids: string[]) {
         }
       }
 
-      setActiveId(current ?? ids[0] ?? null)
+      setActiveId(current ?? currentIds[0] ?? null)
     }
 
     function onScroll() {
@@ -83,7 +90,7 @@ function useActiveHeading(ids: string[]) {
       scrollParent.removeEventListener("scroll", onScroll)
       cancelAnimationFrame(raf)
     }
-  }, [ids])
+  }, [])
 
   return activeId
 }

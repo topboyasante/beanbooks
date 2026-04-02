@@ -13,7 +13,11 @@ import { ChallengePage } from "@/pages/challenge"
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
+    // The scrollable container is <main>, not window (body has overflow-hidden)
+    const main = document.querySelector("main")
+    if (main) {
+      main.scrollTo(0, 0)
+    }
   }, [pathname])
   return null
 }

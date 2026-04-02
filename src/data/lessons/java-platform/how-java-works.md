@@ -34,7 +34,7 @@ flowchart LR
 2. The `javac` compiler checks your code for errors and translates it into **bytecode** — a set of instructions stored in a `.class` file.
 3. The **JVM** reads the bytecode and translates it into native machine instructions for whatever platform it is running on.
 
-The bytecode in the `.class` file is platform-independent. The JVM is platform-specific. That separation is the key insight.
+The bytecode in the `.class` file is **platform-independent** — it contains generic instructions that are not tied to any operating system or CPU. The JVM is **platform-specific** — Oracle, the open-source community, and other vendors build a separate JVM for each operating system (Windows, macOS, Linux, etc.), and each one knows how to translate the same bytecode into native machine instructions for its host platform. That separation is the key insight: you compile once, and any platform's JVM can run the result.
 
 ```java
 // This source code compiles to the SAME bytecode
@@ -58,13 +58,21 @@ graph TD
   JDK -->|includes| JRE -->|includes| JVM
 ```
 
-- **JVM** — The engine that runs bytecode. There is a different JVM implementation for each operating system.
-- **JRE** — The JVM plus the standard class libraries your programs need at runtime.
-- **JDK** — The JRE plus development tools like the compiler (`javac`), debugger (`jdb`), and documentation generator (`javadoc`). This is what you install to write Java code.
+- **JVM** — The engine that runs bytecode. There is a different JVM implementation for each operating system. *JS equivalent: the V8 engine inside Chrome or Node.js — it reads and executes your code.*
+- **JRE** — The JVM plus the standard class libraries your programs need at runtime. *JS equivalent: Node.js itself — V8 plus built-in modules like `fs`, `http`, and `path` that your code can use.*
+- **JDK** — The JRE plus development tools like the compiler (`javac`), debugger (`jdb`), and documentation generator (`javadoc`). This is what you install to write Java code. *JS equivalent: Node.js + npm + your toolchain (TypeScript compiler, ESLint, etc.) — everything you need to both write and run code.*
 
 ### Stack vs Heap Memory
 
-The JVM manages two primary regions of memory:
+Before we talk about memory, you will see the word **thread** come up. A thread is simply a single sequence of work that the JVM is executing. Think of it as one bank teller at a counter — they handle one customer at a time, step by step. A Java program starts with one thread (the `main` thread), but it can spin up additional threads to do multiple things at once, just like a bank opens more teller windows during the lunch rush. Each teller works independently, but they all share access to the same filing cabinet (the heap). You don't need to create threads yourself right now — just know that when we say "thread," we mean one worker doing one sequence of tasks.
+
+The JVM manages two primary regions of memory. A real-world way to think about it:
+
+- **Stack** is like a stack of sticky notes on your desk. When your manager says "process this deposit," you grab a fresh sticky note, jot down the details (amount, account number), do the work, and toss the note when you're done. Each task gets its own note, and you always work from the top of the pile. Fast, temporary, and personal to you — no one else touches your sticky notes.
+
+- **Heap** is like the bank's filing cabinet. When a customer opens a new account, you create a folder with all their information and file it in the shared cabinet. That folder stays there long after you've tossed your sticky note. Any teller (thread) can walk over and pull the folder when they need it. Folders only get cleaned out when nobody needs them anymore (garbage collection).
+
+In JVM terms:
 
 - **Stack** — Stores method calls and local variables. Each thread gets its own stack. When a method is called, a new "frame" is pushed onto the stack; when it returns, the frame is popped. Stack memory is fast and automatically managed.
 - **Heap** — Stores all objects created with `new`. The heap is shared across all threads. When you write `Account account = new Account()`, the `Account` object lives on the heap, while the `account` reference variable lives on the stack.
