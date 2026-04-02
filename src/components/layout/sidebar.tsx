@@ -17,8 +17,11 @@ import {
   Search,
   Trophy,
   GitBranch,
+  Sun,
+  Moon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useTheme } from "@/components/theme-provider"
 import type { Module, Lesson } from "@/types/learning"
 
 const iconMap: Record<string, React.ElementType> = {
@@ -43,6 +46,24 @@ interface SidebarProps {
   open: boolean
   onClose: () => void
   onSearchOpen: () => void
+}
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme()
+  const isDark =
+    theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+  return (
+    <div className="border-t border-white/10 px-3 py-3">
+      <button
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-gray-400 transition-colors hover:bg-white/10 hover:text-gray-200"
+      >
+        {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        <span>{isDark ? "Light mode" : "Dark mode"}</span>
+      </button>
+    </div>
+  )
 }
 
 export function Sidebar({
@@ -180,6 +201,8 @@ export function Sidebar({
             )
           })}
         </nav>
+
+        <ThemeToggle />
       </aside>
     </>
   )

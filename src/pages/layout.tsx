@@ -40,7 +40,7 @@ export function SidebarLayout() {
   )
 
   return (
-    <div className="flex h-screen bg-[#f7f9fc]">
+    <div className="flex h-screen bg-background">
       <Sidebar
         modules={modules}
         activeLesson={activeLesson}
