@@ -69,7 +69,7 @@ export function SidebarLayout() {
           </button>
           <Building2 className="h-5 w-5 text-violet-600" />
           <span className="text-sm font-semibold text-foreground">
-            JavaBank Lab
+            Beanbooks
           </span>
         </div>
 

@@ -1,8 +1,8 @@
-# JavaBank Lab
+# Beanbooks
 
 An interactive learning platform for Java backend development through real banking scenarios. Built with React, TypeScript, and Tailwind CSS.
 
-![JavaBank Lab Screenshot](docs/screenshot.png)
+![Beanbooks Screenshot](docs/screenshot.png)
 
 ## What It Teaches
 

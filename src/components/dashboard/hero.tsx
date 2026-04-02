@@ -20,7 +20,7 @@ export function Hero({ totalLessons, completedCount, onStartLearning }: HeroProp
             <span className="text-sm font-medium">Interactive Learning</span>
           </div>
           <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground">
-            Welcome to JavaBank Lab
+            Welcome to Beanbooks
           </h1>
           <p className="mb-6 max-w-lg text-sm leading-relaxed text-muted-foreground">
             Learn Java backend development through real banking scenarios. Build a

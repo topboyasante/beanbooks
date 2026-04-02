@@ -103,7 +103,7 @@ export function Sidebar({
             className="flex items-center gap-2.5 text-left hover:opacity-80"
           >
             <Building2 className="h-5 w-5 text-violet-400" />
-            <span className="text-base font-semibold">JavaBank Lab</span>
+            <span className="text-base font-semibold">Beanbooks</span>
           </button>
           <button
             onClick={onClose}
