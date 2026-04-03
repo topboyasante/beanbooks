@@ -1,4 +1,9 @@
-import type { SimulatorResult } from "@/types/learning"
+interface SimulatorResult {
+  output: string
+  expectedOutput: string
+  isCorrect: boolean
+  feedback: string
+}
 
 type VarValue = string | number | number[]
 

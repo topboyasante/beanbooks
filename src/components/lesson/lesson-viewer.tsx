@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState, useRef, useCallback } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import { Landmark, Lightbulb, List, Code2, Copy, Check } from "lucide-react"
+import { Landmark, Lightbulb, List, Code2, Copy, Check, Server } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { MermaidDiagram } from "./mermaid-diagram"
@@ -9,7 +9,7 @@ import { ReviewQuestions } from "./review-questions"
 import { CodeBlock } from "./code-block"
 import { Tooltip } from "@/components/ui/tooltip"
 import { lookupGlossary } from "@/data/glossary"
-import type { Lesson } from "@/types/learning"
+import type { Lesson, Course } from "@/types/learning"
 
 interface TocEntry {
   level: number
@@ -42,8 +42,14 @@ function slugify(text: string): string {
     .replace(/\s+/g, "-")
 }
 
+const scenarioIconMap: Record<string, React.ElementType> = {
+  landmark: Landmark,
+  server: Server,
+}
+
 interface LessonViewerProps {
   lesson: Lesson
+  course: Course
   onStartChallenge: () => void
 }
 
@@ -103,10 +109,10 @@ function buildLessonMarkdown(lesson: Lesson): string {
   parts.push(lesson.description)
   parts.push("")
 
-  if (lesson.bankingScenario) {
-    parts.push("## Banking Scenario")
+  if (lesson.scenario) {
+    parts.push("## Scenario")
     parts.push("")
-    parts.push(lesson.bankingScenario.trim())
+    parts.push(lesson.scenario.trim())
     parts.push("")
   }
 
@@ -125,7 +131,7 @@ function buildLessonMarkdown(lesson: Lesson): string {
   return parts.join("\n")
 }
 
-export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
+export function LessonViewer({ lesson, course, onStartChallenge }: LessonViewerProps) {
   const toc = useMemo(() => extractToc(lesson.content), [lesson.content])
   const tocIds = useMemo(() => toc.map((e) => e.id), [toc])
   const activeId = useActiveHeading(tocIds)
@@ -174,18 +180,23 @@ export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
           </Button>
         </div>
 
-        {/* Banking Scenario */}
-        <section className="rounded-lg bg-violet-50 p-4 dark:bg-violet-950/30 sm:p-6">
-          <div className="mb-3 flex items-center gap-2 text-violet-700 dark:text-violet-400">
-            <Landmark className="h-4 w-4" />
-            <span className="text-sm font-semibold uppercase tracking-wide">
-              Banking Scenario
-            </span>
-          </div>
-          <div className="markdown-body text-violet-900/80 dark:text-violet-200/80">
-            <MarkdownContent content={lesson.bankingScenario} />
-          </div>
-        </section>
+        {/* Scenario */}
+        {lesson.scenario && (() => {
+          const ScenarioIcon = scenarioIconMap[course.scenarioIcon] || Landmark
+          return (
+            <section className="rounded-lg bg-violet-50 p-4 dark:bg-violet-950/30 sm:p-6">
+              <div className="mb-3 flex items-center gap-2 text-violet-700 dark:text-violet-400">
+                <ScenarioIcon className="h-4 w-4" />
+                <span className="text-sm font-semibold uppercase tracking-wide">
+                  {course.scenarioLabel}
+                </span>
+              </div>
+              <div className="markdown-body text-violet-900/80 dark:text-violet-200/80">
+                <MarkdownContent content={lesson.scenario} />
+              </div>
+            </section>
+          )
+        })()}
 
         {/* Main Content */}
         <div className="markdown-body">
@@ -211,25 +222,27 @@ export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
         )}
 
         {/* Start Challenge CTA */}
-        <div className="rounded-lg bg-[#1e1e1e] p-4 sm:p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-base font-semibold text-white">
-                Ready to code?
-              </h3>
-              <p className="mt-1 text-sm text-gray-400">
-                Put what you learned into practice with the challenge.
-              </p>
+        {lesson.challenge && (
+          <div className="rounded-lg bg-[#1e1e1e] p-4 sm:p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-semibold text-white">
+                  Ready to code?
+                </h3>
+                <p className="mt-1 text-sm text-gray-400">
+                  Put what you learned into practice with the challenge.
+                </p>
+              </div>
+              <Button
+                onClick={onStartChallenge}
+                className="gap-2 bg-violet-600 hover:bg-violet-700"
+              >
+                <Code2 className="h-4 w-4" />
+                Start Challenge
+              </Button>
             </div>
-            <Button
-              onClick={onStartChallenge}
-              className="gap-2 bg-violet-600 hover:bg-violet-700"
-            >
-              <Code2 className="h-4 w-4" />
-              Start Challenge
-            </Button>
           </div>
-        </div>
+        )}
       </div>
 
       {/* TOC sidebar */}

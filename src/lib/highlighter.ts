@@ -8,7 +8,7 @@ export async function getHighlighter(): Promise<Highlighter> {
   if (!loading) {
     loading = createHighlighter({
       themes: ["github-dark"],
-      langs: ["java", "sql", "yaml", "properties", "dockerfile", "xml", "json", "bash"],
+      langs: ["java", "go", "sql", "yaml", "properties", "dockerfile", "xml", "json", "bash"],
     }).then((h) => {
       highlighter = h
       return h

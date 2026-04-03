@@ -1,48 +1,51 @@
-const KEYS = {
-  COMPLETED: "javabank-completed-lessons",
-  ACTIVE: "javabank-active-lesson",
-  CODE: "javabank-saved-code",
-} as const
+function keys(courseId: string) {
+  return {
+    COMPLETED: `beanbooks-${courseId}-completed`,
+    ACTIVE: `beanbooks-${courseId}-active`,
+    CODE: `beanbooks-${courseId}-code`,
+  } as const
+}
 
-export function getCompletedLessons(): string[] {
+export function getCompletedLessons(courseId: string): string[] {
   try {
-    return JSON.parse(localStorage.getItem(KEYS.COMPLETED) || "[]")
+    return JSON.parse(localStorage.getItem(keys(courseId).COMPLETED) || "[]")
   } catch {
     return []
   }
 }
 
-export function markLessonComplete(lessonId: string): void {
-  const completed = new Set(getCompletedLessons())
+export function markLessonComplete(courseId: string, lessonId: string): void {
+  const completed = new Set(getCompletedLessons(courseId))
   completed.add(lessonId)
-  localStorage.setItem(KEYS.COMPLETED, JSON.stringify([...completed]))
+  localStorage.setItem(keys(courseId).COMPLETED, JSON.stringify([...completed]))
 }
 
-export function isLessonCompleted(lessonId: string): boolean {
-  return getCompletedLessons().includes(lessonId)
+export function isLessonCompleted(courseId: string, lessonId: string): boolean {
+  return getCompletedLessons(courseId).includes(lessonId)
 }
 
-export function getActiveLessonId(): string | null {
-  return localStorage.getItem(KEYS.ACTIVE)
+export function getActiveLessonId(courseId: string): string | null {
+  return localStorage.getItem(keys(courseId).ACTIVE)
 }
 
-export function setActiveLessonId(lessonId: string): void {
-  localStorage.setItem(KEYS.ACTIVE, lessonId)
+export function setActiveLessonId(courseId: string, lessonId: string): void {
+  localStorage.setItem(keys(courseId).ACTIVE, lessonId)
 }
 
-export function getSavedCode(lessonId: string): string | null {
-  return localStorage.getItem(`${KEYS.CODE}-${lessonId}`)
+export function getSavedCode(courseId: string, lessonId: string): string | null {
+  return localStorage.getItem(`${keys(courseId).CODE}-${lessonId}`)
 }
 
-export function saveCode(lessonId: string, code: string): void {
-  localStorage.setItem(`${KEYS.CODE}-${lessonId}`, code)
+export function saveCode(courseId: string, lessonId: string, code: string): void {
+  localStorage.setItem(`${keys(courseId).CODE}-${lessonId}`, code)
 }
 
-export function clearAllProgress(): void {
+export function clearCourseProgress(courseId: string): void {
+  const prefix = `beanbooks-${courseId}-`
   const keysToRemove: string[] = []
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i)
-    if (key?.startsWith("javabank-")) {
+    if (key?.startsWith(prefix)) {
       keysToRemove.push(key)
     }
   }

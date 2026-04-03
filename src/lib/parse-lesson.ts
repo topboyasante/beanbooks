@@ -2,6 +2,7 @@ import type { Lesson, Challenge, Question } from "@/types/learning"
 
 interface LessonFrontmatter {
   id: string
+  courseId: string
   moduleId: string
   title: string
   description: string
@@ -12,21 +13,25 @@ export function parseLesson(raw: string): Lesson {
   const { frontmatter, body } = parseFrontmatter(raw)
   const sections = parseSections(body)
 
-  const challenge: Challenge = {
-    instructions: sections["Challenge"] || "",
-    starterCode: extractCodeBlock(sections["Starter Code"] || ""),
-    expectedOutput: extractCodeBlock(sections["Expected Output"] || ""),
-    hint: sections["Hint"] || "",
-    solution: extractCodeBlock(sections["Solution"] || ""),
-  }
+  const hasChallenge = !!(sections["Challenge"] || sections["Starter Code"])
+  const challenge: Challenge | undefined = hasChallenge
+    ? {
+        instructions: sections["Challenge"] || "",
+        starterCode: extractCodeBlock(sections["Starter Code"] || ""),
+        expectedOutput: extractCodeBlock(sections["Expected Output"] || ""),
+        hint: sections["Hint"] || "",
+        solution: extractCodeBlock(sections["Solution"] || ""),
+      }
+    : undefined
 
   return {
     id: frontmatter.id,
+    courseId: frontmatter.courseId || "",
     moduleId: frontmatter.moduleId,
     title: frontmatter.title,
     description: frontmatter.description,
     order: frontmatter.order,
-    bankingScenario: sections["Banking Scenario"] || "",
+    scenario: sections["Banking Scenario"] || sections["Scenario"] || "",
     content: sections["Content"] || "",
     whyItMatters: sections["Why It Matters"] || "",
     questions: parseQuestions(sections["Questions"] || ""),
@@ -65,6 +70,7 @@ function parseSections(body: string): Record<string, string> {
   const sections: Record<string, string> = {}
   const sectionHeaders = [
     "Banking Scenario",
+    "Scenario",
     "Content",
     "Why It Matters",
     "Questions",
@@ -75,7 +81,6 @@ function parseSections(body: string): Record<string, string> {
     "Solution",
   ]
 
-  // Find all ## headers and their positions
   const headerRegex = /^## (.+)$/gm
   const matches: { name: string; index: number }[] = []
   let m
@@ -86,7 +91,7 @@ function parseSections(body: string): Record<string, string> {
   }
 
   for (let i = 0; i < matches.length; i++) {
-    const start = matches[i].index + matches[i].name.length + 4 // skip "## Name\n"
+    const start = matches[i].index + matches[i].name.length + 4
     const end = i + 1 < matches.length ? matches[i + 1].index : body.length
     sections[matches[i].name] = body.slice(start, end).trim()
   }
@@ -113,7 +118,7 @@ function parseQuestions(section: string): Question[] {
       }
       const correctMatch = line.match(/^Correct:\s*([A-D])$/i)
       if (correctMatch) {
-        correctIndex = correctMatch[1].charCodeAt(0) - 65 // A=0, B=1, C=2, D=3
+        correctIndex = correctMatch[1].charCodeAt(0) - 65
       }
     }
 

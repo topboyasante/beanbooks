@@ -1,41 +1,49 @@
 import { useParams, useNavigate, Navigate } from "react-router"
-import { MonacoPlayground } from "@/components/playground/monaco-playground"
-import { useProgress } from "@/lib/progress"
+import { ProgressProvider, useProgress } from "@/lib/progress"
 import { findLessonById, getNextLesson } from "@/lib/lessons"
-import { getSavedCode, saveCode } from "@/lib/storage"
+import { findCourseById } from "@/data/courses"
+import { LocalChallenge } from "@/components/challenge/local-challenge"
 
 export function ChallengePage() {
-  const { lessonId } = useParams()
+  const { courseId } = useParams()
+  const course = courseId ? findCourseById(courseId) : undefined
+
+  if (!course) return <Navigate to="/" replace />
+
+  return (
+    <ProgressProvider courseId={course.id}>
+      <ChallengePageInner />
+    </ProgressProvider>
+  )
+}
+
+function ChallengePageInner() {
+  const { courseId, lessonId } = useParams()
   const navigate = useNavigate()
-  const { completedLessons, markComplete } = useProgress()
-  const lesson = lessonId ? findLessonById(lessonId) : null
+  const { markComplete } = useProgress()
+  const result = lessonId ? findLessonById(lessonId) : null
+  const course = courseId ? findCourseById(courseId) : undefined
 
-  if (!lesson) return <Navigate to="/" replace />
-
-  function handleCodeChange(code: string) {
-    saveCode(lesson!.id, code)
+  if (!result || !course || !result.lesson.challenge) {
+    return <Navigate to={`/course/${courseId}`} replace />
   }
 
   function handleMarkComplete() {
-    markComplete(lesson!.id)
-    const next = getNextLesson(lesson!)
+    markComplete(result!.lesson.id)
+    const next = getNextLesson(course!, result!.lesson)
     if (next) {
-      navigate(`/lesson/${next.id}`)
+      navigate(`/course/${courseId}/lesson/${next.id}`)
     } else {
-      navigate("/")
+      navigate(`/course/${courseId}`)
     }
   }
 
   return (
-    <MonacoPlayground
-      lessonTitle={lesson.title}
-      moduleId={lesson.moduleId}
-      challenge={lesson.challenge}
-      savedCode={getSavedCode(lesson.id)}
-      isCompleted={completedLessons.includes(lesson.id)}
-      onCodeChange={handleCodeChange}
+    <LocalChallenge
+      lessonTitle={result.lesson.title}
+      challenge={result.lesson.challenge}
       onMarkComplete={handleMarkComplete}
-      onBack={() => navigate(`/lesson/${lesson.id}`)}
+      onBack={() => navigate(`/course/${courseId}/lesson/${result!.lesson.id}`)}
     />
   )
 }

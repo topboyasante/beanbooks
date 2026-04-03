@@ -2,14 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react"
 import { Search, FileText, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { searchLessons, type SearchResult } from "@/lib/lessons"
+import type { Course } from "@/types/learning"
 
 interface SearchDialogProps {
   open: boolean
   onClose: () => void
   onSelect: (lessonId: string) => void
+  course: Course
 }
 
-export function SearchDialog({ open, onClose, onSelect }: SearchDialogProps) {
+export function SearchDialog({ open, onClose, onSelect, course }: SearchDialogProps) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -30,7 +32,7 @@ export function SearchDialog({ open, onClose, onSelect }: SearchDialogProps) {
     setSelectedIndex(0)
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => {
-      setResults(searchLessons(value))
+      setResults(searchLessons(value, course))
     }, 150)
   }, [])
 

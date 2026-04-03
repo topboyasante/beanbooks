@@ -1,23 +1,36 @@
 import { useState, useEffect, useCallback } from "react"
-import { Outlet, useNavigate, useParams } from "react-router"
+import { Outlet, useNavigate, useParams, Navigate } from "react-router"
 import { Menu, Building2 } from "lucide-react"
 import { Sidebar } from "@/components/layout/sidebar"
 import { SearchDialog } from "@/components/search/search-dialog"
-import { useProgress } from "@/lib/progress"
+import { ProgressProvider, useProgress } from "@/lib/progress"
 import { findLessonById } from "@/lib/lessons"
-import { modules } from "@/data/lessons"
+import { findCourseById } from "@/data/courses"
 import type { Lesson } from "@/types/learning"
 
 export function SidebarLayout() {
+  const { courseId } = useParams()
+  const course = courseId ? findCourseById(courseId) : undefined
+
+  if (!course) return <Navigate to="/" replace />
+
+  return (
+    <ProgressProvider courseId={course.id}>
+      <SidebarLayoutInner />
+    </ProgressProvider>
+  )
+}
+
+function SidebarLayoutInner() {
   const navigate = useNavigate()
-  const { lessonId } = useParams()
+  const { courseId, lessonId } = useParams()
   const { completedLessons } = useProgress()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
 
-  const activeLesson = lessonId ? findLessonById(lessonId) : null
+  const course = findCourseById(courseId!)!
+  const activeLesson = lessonId ? findLessonById(lessonId)?.lesson ?? null : null
 
-  // Cmd+K / Ctrl+K shortcut
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -30,23 +43,25 @@ export function SidebarLayout() {
   }, [])
 
   const handleSelectLesson = useCallback(
-    (lesson: Lesson) => navigate(`/lesson/${lesson.id}`),
-    [navigate],
+    (lesson: Lesson) => navigate(`/course/${courseId}/lesson/${lesson.id}`),
+    [navigate, courseId],
   )
 
   const handleSearchSelect = useCallback(
-    (id: string) => navigate(`/lesson/${id}`),
-    [navigate],
+    (id: string) => navigate(`/course/${courseId}/lesson/${id}`),
+    [navigate, courseId],
   )
 
   return (
     <div className="flex h-screen bg-background">
       <Sidebar
-        modules={modules}
+        modules={course.modules}
+        courseTitle={course.title}
         activeLesson={activeLesson}
         completedLessons={completedLessons}
         onSelectLesson={handleSelectLesson}
-        onGoHome={() => navigate("/")}
+        onGoHome={() => navigate(`/course/${courseId}`)}
+        onGoBack={() => navigate("/")}
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         onSearchOpen={() => setSearchOpen(true)}
@@ -56,10 +71,10 @@ export function SidebarLayout() {
         open={searchOpen}
         onClose={() => setSearchOpen(false)}
         onSelect={handleSearchSelect}
+        course={course}
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Mobile header */}
         <div className="flex items-center gap-3 border-b border-border px-4 py-3 lg:hidden">
           <button
             onClick={() => setSidebarOpen(true)}
@@ -69,7 +84,7 @@ export function SidebarLayout() {
           </button>
           <Building2 className="h-5 w-5 text-violet-600" />
           <span className="text-sm font-semibold text-foreground">
-            Beanbooks
+            {course.title}
           </span>
         </div>
 
