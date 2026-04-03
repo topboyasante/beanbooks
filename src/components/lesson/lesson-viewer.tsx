@@ -175,14 +175,14 @@ export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
         </div>
 
         {/* Banking Scenario */}
-        <section className="rounded-lg bg-violet-50 p-4 sm:p-6">
-          <div className="mb-3 flex items-center gap-2 text-violet-700">
+        <section className="rounded-lg bg-violet-50 p-4 dark:bg-violet-950/30 sm:p-6">
+          <div className="mb-3 flex items-center gap-2 text-violet-700 dark:text-violet-400">
             <Landmark className="h-4 w-4" />
             <span className="text-sm font-semibold uppercase tracking-wide">
               Banking Scenario
             </span>
           </div>
-          <div className="markdown-body text-violet-900/80">
+          <div className="markdown-body text-violet-900/80 dark:text-violet-200/80">
             <MarkdownContent content={lesson.bankingScenario} />
           </div>
         </section>
@@ -193,14 +193,14 @@ export function LessonViewer({ lesson, onStartChallenge }: LessonViewerProps) {
         </div>
 
         {/* Why It Matters */}
-        <section className="rounded-lg bg-amber-50 p-4 sm:p-6">
-          <div className="mb-3 flex items-center gap-2 text-amber-700">
+        <section className="rounded-lg bg-amber-50 p-4 dark:bg-amber-950/30 sm:p-6">
+          <div className="mb-3 flex items-center gap-2 text-amber-700 dark:text-amber-400">
             <Lightbulb className="h-4 w-4" />
             <span className="text-sm font-semibold uppercase tracking-wide">
               Why It Matters
             </span>
           </div>
-          <div className="markdown-body text-amber-900/80">
+          <div className="markdown-body text-amber-900/80 dark:text-amber-200/80">
             <MarkdownContent content={lesson.whyItMatters} />
           </div>
         </section>

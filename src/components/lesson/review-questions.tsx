@@ -63,14 +63,14 @@ export function ReviewQuestions({ questions, lessonId: _lessonId }: ReviewQuesti
                   let optionStyle = "border-border text-muted-foreground hover:bg-muted/50"
                   if (isChecked) {
                     if (isAnswer) {
-                      optionStyle = "border-green-300 bg-green-50 text-green-800"
+                      optionStyle = "border-green-300 bg-green-50 text-green-800 dark:border-green-700 dark:bg-green-950/30 dark:text-green-300"
                     } else if (isSelected && !isAnswer) {
-                      optionStyle = "border-red-300 bg-red-50 text-red-800"
+                      optionStyle = "border-red-300 bg-red-50 text-red-800 dark:border-red-700 dark:bg-red-950/30 dark:text-red-300"
                     } else {
                       optionStyle = "border-border text-muted-foreground/50"
                     }
                   } else if (isSelected) {
-                    optionStyle = "border-violet-300 bg-violet-50 text-violet-800"
+                    optionStyle = "border-violet-300 bg-violet-50 text-violet-800 dark:border-violet-700 dark:bg-violet-950/30 dark:text-violet-300"
                   }
 
                   return (
@@ -100,7 +100,7 @@ export function ReviewQuestions({ questions, lessonId: _lessonId }: ReviewQuesti
               {!isChecked && selected.has(qi) && (
                 <button
                   onClick={() => checkAnswer(qi)}
-                  className="mt-2 text-xs font-medium text-violet-600 hover:text-violet-700"
+                  className="mt-2 text-xs font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
                 >
                   Check Answer
                 </button>
@@ -125,7 +125,7 @@ export function ReviewQuestions({ questions, lessonId: _lessonId }: ReviewQuesti
         {answeredCount < questions.length && (
           <button
             onClick={checkAll}
-            className="text-xs font-medium text-violet-600 hover:text-violet-700"
+            className="text-xs font-medium text-violet-600 hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
           >
             Check All
           </button>

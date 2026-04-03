@@ -97,7 +97,7 @@ export function ProgressOverview({
                 onClick={() => toggleModule(mod.id)}
                 className="flex w-full items-center gap-4 bg-muted/40 px-5 py-4 text-left transition-colors hover:bg-muted/60"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-100 text-violet-600">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-950/40 dark:text-violet-400">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div className="flex-1 min-w-0">
