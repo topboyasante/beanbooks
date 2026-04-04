@@ -9,12 +9,15 @@ export function CoursePickerPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-2xl">
-        <div className="mb-2 flex items-center gap-2.5 text-violet-600">
-          <Building2 className="h-5 w-5" />
-          <span className="text-sm font-medium">Beanbooks</span>
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border">
+        <div className="flex items-center gap-2.5 px-6 py-4">
+          <Building2 className="h-5 w-5 text-violet-600" />
+          <span className="text-base font-semibold text-foreground">Beanbooks</span>
         </div>
+      </header>
+
+      <div className="mx-auto w-full max-w-2xl px-4 py-10 sm:px-6 sm:py-16">
         <h1 className="mb-2 text-2xl font-bold tracking-tight text-foreground">
           Choose a course
         </h1>

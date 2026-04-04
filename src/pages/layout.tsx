@@ -1,11 +1,19 @@
 import { useState, useEffect, useCallback } from "react"
-import { Outlet, useNavigate, useParams, Navigate } from "react-router"
+import { Outlet, useNavigate, useParams, Navigate, Link } from "react-router"
 import { Menu, Building2 } from "lucide-react"
 import { Sidebar } from "@/components/layout/sidebar"
 import { SearchDialog } from "@/components/search/search-dialog"
 import { ProgressProvider, useProgress } from "@/lib/progress"
 import { findLessonById } from "@/lib/lessons"
 import { findCourseById } from "@/data/courses"
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import type { Lesson } from "@/types/learning"
 
 export function SidebarLayout() {
@@ -61,7 +69,6 @@ function SidebarLayoutInner() {
         completedLessons={completedLessons}
         onSelectLesson={handleSelectLesson}
         onGoHome={() => navigate(`/course/${courseId}`)}
-        onGoBack={() => navigate("/")}
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         onSearchOpen={() => setSearchOpen(true)}
@@ -75,17 +82,42 @@ function SidebarLayoutInner() {
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex items-center gap-3 border-b border-border px-4 py-3 lg:hidden">
+        <div className="flex items-center gap-3 border-b border-border px-4 py-3">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="rounded-md p-1 text-muted-foreground hover:text-foreground"
+            className="rounded-md p-1 text-muted-foreground hover:text-foreground lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <Building2 className="h-5 w-5 text-violet-600" />
-          <span className="text-sm font-semibold text-foreground">
-            {course.title}
-          </span>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">
+                    <Building2 className="h-4 w-4" />
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                {activeLesson ? (
+                  <BreadcrumbLink asChild>
+                    <Link to={`/course/${courseId}`}>{course.title}</Link>
+                  </BreadcrumbLink>
+                ) : (
+                  <BreadcrumbPage>{course.title}</BreadcrumbPage>
+                )}
+              </BreadcrumbItem>
+              {activeLesson && (
+                <>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>{activeLesson.title}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </>
+              )}
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
 
         <main className="flex-1 overflow-y-auto scroll-smooth">

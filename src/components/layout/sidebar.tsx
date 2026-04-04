@@ -1,6 +1,5 @@
 import { useState } from "react"
 import {
-  ArrowLeft,
   Building2,
   ChevronDown,
   ChevronRight,
@@ -45,7 +44,6 @@ interface SidebarProps {
   completedLessons: string[]
   onSelectLesson: (lesson: Lesson) => void
   onGoHome: () => void
-  onGoBack: () => void
   open: boolean
   onClose: () => void
   onSearchOpen: () => void
@@ -76,7 +74,6 @@ export function Sidebar({
   completedLessons,
   onSelectLesson,
   onGoHome,
-  onGoBack,
   open,
   onClose,
   onSearchOpen,
@@ -124,22 +121,13 @@ export function Sidebar({
         )}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={onGoBack}
-              className="rounded-md p-1 text-gray-400 hover:text-white"
-              title="All courses"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={handleGoHome}
-              className="flex items-center gap-2 text-left hover:opacity-80"
-            >
-              <Building2 className="h-5 w-5 text-violet-400" />
-              <span className="text-base font-semibold">{courseTitle}</span>
-            </button>
-          </div>
+          <button
+            onClick={handleGoHome}
+            className="flex items-center gap-2.5 text-left hover:opacity-80"
+          >
+            <Building2 className="h-5 w-5 text-violet-400" />
+            <span className="text-base font-semibold">{courseTitle}</span>
+          </button>
           <button
             onClick={onClose}
             className="rounded-md p-1 text-gray-400 hover:text-white lg:hidden"
